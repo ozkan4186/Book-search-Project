@@ -7,13 +7,17 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  width: 800px;
+  margin: 3rem auto;
+  text-align: center;
+
   
 }
 .card{
-width: 12rem;
+width: 16rem;
 text-align: center;
 border: 2px solid red;
-margin: 2rem auto;
+
 }
 .form{
   text-align: center;

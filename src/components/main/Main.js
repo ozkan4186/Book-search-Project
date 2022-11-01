@@ -8,11 +8,10 @@ const Main = () => {
   const url = `https://www.googleapis.com/books/v1/volumes?q=%27${book}%27&key=AIzaSyA6SaT23KNiiA6DnUfUQTvFeyAcQEkwnSU&maxResults=25`;
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     console.log("mdksmdks");
-    getApi()
+    getApi();
     setBook("");
-    
   };
   const getApi = async () => {
     try {
@@ -25,11 +24,11 @@ const Main = () => {
   };
 
   // useEffect(() => {
-    // getApi();
+  // getApi();
   // }, []);
 
   return (
-    <div>
+    <div className="form">
       <form onSubmit={handleSubmit} action="">
         <h1>kitap bul</h1>
         <input
@@ -40,20 +39,25 @@ const Main = () => {
 
         <button type="submit">ok</button>
       </form>
-
-      {api.map((item)=>{
-        return(
-          <div>
-            <img src={item?.volumeInfo?.imageLinks?.thumbnail} alt="" />
-            
-          </div>
-
-        )
-      })}
-
-
-
-
+      <div className="kapsayan">
+        {api.map((item, index) => {
+          return item?.volumeInfo?.imageLinks ? (
+            <div key={index} className="cardd">
+              <img
+                src={item?.volumeInfo.imageLinks?.smallThumbnail}
+                alt="empty"
+              />
+              <h4>
+                {item?.volumeInfo.imageLinks &&
+                  item?.volumeInfo.imageLinks &&
+                  item?.volumeInfo?.title}{" "}
+              </h4>
+            </div>
+          ) : (
+            ""
+          );
+        })}
+      </div>
     </div>
   );
 };
