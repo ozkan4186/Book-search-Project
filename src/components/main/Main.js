@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Modal from "../modal/Modal";
 
 const Main = () => {
 
@@ -44,16 +45,12 @@ const Main = () => {
       <div className="container">
         {api.map((item, index) => {
           return item?.volumeInfo?.imageLinks ? (
-            <div key={index} className="cardd" onClick={()=>navigate("/modal")} >
+            <div key={index} className="cardd" onClick={()=>navigate("/modal" ,{state:item}  )} >
               <img
                 src={item?.volumeInfo.imageLinks?.smallThumbnail}
                 alt="empty"
               />
-              <h4>
-                {" "}
-                {item?.volumeInfo.imageLinks &&
-                  item?.volumeInfo.imageLinks &&
-                  item?.volumeInfo?.title}
+            <h4> {item?.volumeInfo.imageLinks && item?.volumeInfo.imageLinks && item?.volumeInfo?.title}
               </h4>
               <h5> {item?.saleInfo?.listPrice?.amount} </h5>
             </div>
@@ -62,6 +59,7 @@ const Main = () => {
           );
         })}
       </div>
+    
     </div>
   );
 };

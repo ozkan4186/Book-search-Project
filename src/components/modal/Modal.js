@@ -1,23 +1,30 @@
-import React from 'react'
+import React from "react";
+import { useLocation } from "react-router-dom";
 
 const Modal = () => {
+  const { state } = useLocation();
+  console.log(state);
+  console.log("nfkdnfk");
+
   return (
-    <div className="container">
-      <i class="fa-solid fa-x"></i>
-      <div className="image">
-        <img src="" alt="" />
+    <div className="modals">
+      <div className="modals2">
+        <img src={state?.volumeInfo.imageLinks?.smallThumbnail} alt="empty" />
         <div className="title">
-          <p></p>
-          <p></p>
-          <h1></h1>
-          <button>More</button>
+          <h2> {state?.volumeInfo?.title} </h2>
+          <h3> {state?.volumeInfo?.authors?.[0]}</h3>
+          <p>
+            {" "}
+            {state?.volumeInfo.publisher} {state?.volumeInfo.publishedDate}{" "}
+          </p>
+          <button className="btn btn-primary" >More</button>
         </div>
       </div>
       <div className="sec">
-        <p></p>
+        <p> {state?.volumeInfo?.description}</p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;

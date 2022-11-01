@@ -37,3 +37,21 @@ cursor: pointer;
   margin: 2rem auto;
   border-radius: 70%;
 }
+.modals2{
+  display: flex;
+  justify-content:center;
+  margin: 2rem;
+  padding: 3rem;
+  gap: 2rem;
+  
+}
+.modals{
+  width: 50rem;
+  margin: 5rem auto;
+  background-color: cadetblue;
+  border-radius: 10px;
+  box-shadow: 3px 3px 10px yellow;
+}
+h2{
+  color: brown;
+}

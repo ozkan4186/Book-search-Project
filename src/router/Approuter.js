@@ -9,8 +9,7 @@ const Approuter = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />} />
-        {/* <Route path="card" element={<Card />} />, */}
-        <Route path="modal" element={<Modal />} />
+      <Route path="modal" element={<Modal />} />
       </Routes>
     </BrowserRouter>
   );
