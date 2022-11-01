@@ -4,10 +4,14 @@ import { useNavigate } from "react-router-dom";
 import Modal from "../modal/Modal";
 
 const Main = () => {
+  const initializePreviousSearchData = () => {
+    return JSON.parse(localStorage.getItem("api")) ?? [];
+  };
+
 
   const navigate=useNavigate()
   const [book, setBook] = useState("");
-  const [api, setApi] = useState([]);
+  const [api, setApi] = useState(initializePreviousSearchData());
 
   const url = `https://www.googleapis.com/books/v1/volumes?q=%27${book}%27&key=AIzaSyA6SaT23KNiiA6DnUfUQTvFeyAcQEkwnSU&maxResults=25`;
   const handleSubmit = (e) => {
@@ -26,6 +30,9 @@ const Main = () => {
       console.log(error);
     }
   };
+   useEffect(() => {
+    localStorage.setItem("api", JSON.stringify(api));
+  }, [api]);
 
   return (
     <div className="form">
@@ -40,7 +47,7 @@ const Main = () => {
           
         />
 
-        <button  type="submit" className="btn btn-danger m-2 text-center pb-2  " >ok</button>
+        <button  type="submit" className="btn btn-danger m-2 text-center pb-2  " >Search</button>
       </form>
       <div className="container">
         {api.map((item, index) => {
@@ -52,7 +59,7 @@ const Main = () => {
               />
             <h4> {item?.volumeInfo.imageLinks && item?.volumeInfo.imageLinks && item?.volumeInfo?.title}
               </h4>
-              <h5> {item?.saleInfo?.listPrice?.amount} </h5>
+              <h5> {item?.saleInfo?.listPrice?.amount} ₺ </h5>
             </div>
           ) : (
             ""
