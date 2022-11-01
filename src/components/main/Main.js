@@ -1,68 +1,59 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Card from "../card/Card";
 
 const Main = () => {
-  const navigate = useNavigate();
-  const [book, setBook] = useState([]);
-  const [value, setValue] = useState({
-    bookname: "",
-  });
-  const url =
-    "https://www.googleapis.com/books/v1/volumes?q=${value.bookname}&key=AIzaSyA6SaT23KNiiA6DnUfUQTvFeyAcQEkwnSU&maxResults=20";
+  const [book, setBook] = useState("");
+  const [api, setApi] = useState([]);
 
-  const searchBook = async () => {
+  const url = `https://www.googleapis.com/books/v1/volumes?q=%27${book}%27&key=AIzaSyA6SaT23KNiiA6DnUfUQTvFeyAcQEkwnSU&maxResults=25`;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    console.log("mdksmdks");
+    getApi()
+    setBook("");
+    
+  };
+  const getApi = async () => {
     try {
       const { data } = await axios(url);
       console.log(data.items);
-      setBook(data.items);
+      setApi(data.items);
     } catch (error) {
       console.log(error);
     }
   };
-  useEffect(() => {
-    searchBook();
-  }, []);
 
-  const handleChange = (e) => {
-    setValue({
-      ...value,
-      [e.target.id]: e.target.value,
-    });
-  };
-  console.log(value);
-
-  const handleSubmit = (e) => {
-    searchBook();
-    e.preventDefault();
-    navigate("/card");
-    setValue({
-      bookname: "",
-    });
-  };
-
-  console.log(book);
+  // useEffect(() => {
+    // getApi();
+  // }, []);
 
   return (
-    <div className="container">
-      <h1>Find a Book</h1>
+    <div>
       <form onSubmit={handleSubmit} action="">
+        <h1>kitap bul</h1>
         <input
-          onChange={handleChange}
-          value={value.bookname}
-          id="bookname"
+          onChange={(e) => setBook(e.target.value)}
           type="text"
+          value={book}
         />
-        <br /> <br />
-        <button type="submit" className="btn btn-danger">
-          Submit
-        </button>
+
+        <button type="submit">ok</button>
       </form>
-      {book &&
-        book.map((item) => {
-          return <Card item={item} />;
-        })}
+
+      {api.map((item)=>{
+        return(
+          <div>
+            <img src={item?.volumeInfo?.imageLinks?.thumbnail} alt="" />
+            
+          </div>
+
+        )
+      })}
+
+
+
+
     </div>
   );
 };
