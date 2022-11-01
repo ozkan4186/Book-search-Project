@@ -1,7 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Main = () => {
+
+  const navigate=useNavigate()
   const [book, setBook] = useState("");
   const [api, setApi] = useState([]);
 
@@ -23,35 +26,36 @@ const Main = () => {
     }
   };
 
-  // useEffect(() => {
-  // getApi();
-  // }, []);
-
   return (
     <div className="form">
       <form onSubmit={handleSubmit} action="">
-        <h1>kitap bul</h1>
+        <h1  >Find a Book</h1>
         <input
+        autoFocus
           onChange={(e) => setBook(e.target.value)}
           type="text"
           value={book}
+          className="mt-2 border border-danger "
+          
         />
 
-        <button type="submit">ok</button>
+        <button  type="submit" className="btn btn-danger m-2 text-center pb-2  " >ok</button>
       </form>
-      <div className="kapsayan">
+      <div className="container">
         {api.map((item, index) => {
           return item?.volumeInfo?.imageLinks ? (
-            <div key={index} className="cardd">
+            <div key={index} className="cardd" onClick={()=>navigate("/modal")} >
               <img
                 src={item?.volumeInfo.imageLinks?.smallThumbnail}
                 alt="empty"
               />
               <h4>
+                {" "}
                 {item?.volumeInfo.imageLinks &&
                   item?.volumeInfo.imageLinks &&
-                  item?.volumeInfo?.title}{" "}
+                  item?.volumeInfo?.title}
               </h4>
+              <h5> {item?.saleInfo?.listPrice?.amount} </h5>
             </div>
           ) : (
             ""
