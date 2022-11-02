@@ -7,6 +7,9 @@ const Main = () => {
   const initializePreviousSearchData = () => {
     return JSON.parse(localStorage.getItem("api")) ?? [];
   };
+  const local=()=>{
+  //  
+  }
 
 
   const navigate=useNavigate()
@@ -19,7 +22,7 @@ const Main = () => {
 
     console.log("mdksmdks");
     getApi();
-    setBook("");
+    setBook(" ");
   };
   const getApi = async () => {
     try {
@@ -32,6 +35,7 @@ const Main = () => {
   };
    useEffect(() => {
     localStorage.setItem("api", JSON.stringify(api));
+  
   }, [api]);
 
   return (
@@ -47,7 +51,7 @@ const Main = () => {
           
         />
 
-        <button  type="submit" className="btn btn-danger m-2 text-center mb-3  p-2 " >Search</button>
+        <button onClick={()=> local(localStorage.clear())  } type="submit" className="btn btn-danger m-2 text-center mb-3  p-2 " >Search</button>
       </form>
       <div className="container">
         {api.map((item, index) => {

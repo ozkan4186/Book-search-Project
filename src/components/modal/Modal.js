@@ -3,6 +3,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const Modal = () => {
   const navigate=useNavigate()
+
+
+  const locals=()=>{
+    localStorage.clear()
+  }
    
   const { state } = useLocation();
   console.log(state);
@@ -14,7 +19,7 @@ const Modal = () => {
         
         <img src={state?.volumeInfo.imageLinks?.smallThumbnail} alt="empty" />
         <div className="title">
-          <i  onClick={()=>navigate(-1)} className="fa-solid fa-x i"></i>
+          <i  onClick={()=>navigate(-1 ,{locals} )  } className="fa-solid fa-x i"></i>
           <h2> {state?.volumeInfo?.title} </h2>
           <h3> {state?.volumeInfo?.authors?.[0]}</h3>
           <p>
