@@ -59,6 +59,7 @@ i{
   text-align: right;
   /* border: 2px solid red; */
   margin-left: 25rem;
+  cursor: pointer;
 }
 h1{
   font-size: 5rem;
