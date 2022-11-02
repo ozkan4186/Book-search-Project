@@ -47,7 +47,7 @@ const Main = () => {
           
         />
 
-        <button  type="submit" className="btn btn-danger m-2 text-center pb-2  " >Search</button>
+        <button  type="submit" className="btn btn-danger m-2 text-center mb-3  p-2 " >Search</button>
       </form>
       <div className="container">
         {api.map((item, index) => {
