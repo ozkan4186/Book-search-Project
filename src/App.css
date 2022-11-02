@@ -55,3 +55,8 @@ cursor: pointer;
 h2{
   color: brown;
 }
+i{
+  text-align: right;
+  /* border: 2px solid red; */
+  margin-left: 25rem;
+}

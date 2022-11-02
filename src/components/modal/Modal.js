@@ -14,7 +14,7 @@ const Modal = () => {
         
         <img src={state?.volumeInfo.imageLinks?.smallThumbnail} alt="empty" />
         <div className="title">
-          <i  onClick={()=>navigate(-1)} class="fa-solid fa-x"></i>
+          <i  onClick={()=>navigate(-1)} className="fa-solid fa-x i"></i>
           <h2> {state?.volumeInfo?.title} </h2>
           <h3> {state?.volumeInfo?.authors?.[0]}</h3>
           <p>
