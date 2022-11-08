@@ -20,7 +20,7 @@ const Main = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("mdksmdks");
+  
     getApi();
     setBook(" ");
   };
@@ -37,13 +37,13 @@ const Main = () => {
     localStorage.setItem("api", JSON.stringify(api));
   
   }, [api]);
-
+ 
   return (
     <div className="form">
-      <form onSubmit={handleSubmit} action="">
-        <h1  >Find a Book</h1>
+      <form  onSubmit={handleSubmit} action="">
+        <h1>Find a Book</h1>
         <input
-        autoFocus
+        
           onChange={(e) => setBook(e.target.value)}
           type="text"
           value={book}
